@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import ChildComp from "./components/ChildComp.vue";
 import {ref} from "vue";
 
-const childMsg = ref("App.vue:[aaaaaaaaaaaaaaaaaaaaaaa]");
+const count = ref<number>(0);
 </script>
 <template>
-  <ChildComp>
-    message:{{ childMsg }}
-  </ChildComp>
+  <button @click="count++">count++</button>
+  <h1>
+    {{ count }}
+  </h1>
 </template>
