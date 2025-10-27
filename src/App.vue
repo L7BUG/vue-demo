@@ -1,39 +1,44 @@
-<script lang="ts" setup>
-import {reactive, ref} from "vue";
-
-const count = ref(1);
-const h1Class = reactive({
-  red: count.value % 1 == 0,
-  green: count.value % 2 == 0,
-});
-const countAndDate = ref([
-  {count: count.value, date: Date.now()},
-])
-const temp = () => {
-  count.value++;
-  h1Class.red = count.value % 1 == 0;
-  h1Class.green = count.value % 2 == 0;
-  countAndDate.value.push({count: count.value, date: Date.now()});
-}
-</script>
 <template>
-  <h1 :class="h1Class">App.vue</h1>
-  <button @click="temp">switch</button>
-  <h2>{{ count }}</h2>
+  <el-form :model="form" label-width="auto" style="max-width: 600px">
 
-  <div v-for="item in countAndDate">
-    <h1>
-      count:{{ item.count }},添加时间:{{ item.date }}
-    </h1>
-  </div>
+    <el-form-item label="Activity type">
+      <el-checkbox-group v-model="form.type">
+        <el-checkbox name="type" value="Online activities">
+          Online activities
+        </el-checkbox>
+        <el-checkbox name="type" value="Promotion activities">
+          Promotion activities
+        </el-checkbox>
+        <el-checkbox name="type" value="Offline activities">
+          Offline activities
+        </el-checkbox>
+        <el-checkbox name="type" value="Simple brand exposure">
+          Simple brand exposure
+        </el-checkbox>
+      </el-checkbox-group>
+    </el-form-item>
+
+    <el-form-item label="test">
+      <el-select v-model="form.select">
+        <el-option v-for="item in 5" :label="item" :value="item"/>
+      </el-select>
+    </el-form-item>
+    <el-button @click="onSubmit">submit</el-button>
+  </el-form>
 </template>
 
-<style scoped>
-.red {
-  color: red;
+<script lang="ts" setup>
+import {reactive} from 'vue'
+
+interface FormData {
+  type?: number[],
+  select?: string,
 }
 
-.green {
-  color: green;
+// do not use same name with ref
+const form = reactive<FormData>({})
+
+const onSubmit = () => {
+  console.log(form)
 }
-</style>
+</script>
