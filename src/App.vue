@@ -1,22 +1,32 @@
 <script lang="ts" setup>
-import {ref} from 'vue'
+import {computed, ref} from 'vue'
 
 interface Todo {
   id: number,
-  text: string
+  text: string,
+  done: boolean,
 }
+
+const hideCompleted = ref<boolean>(true)
 
 let id: number = 0;
 const newTodo = ref<string>('')
 const todos = ref<Todo[]>([
-  {id: id++, text: 'Learn HTML'},
-  {id: id++, text: 'Learn JavaScript'},
-  {id: id++, text: 'Learn Vue'}
+  {id: id++, text: 'Learn HTML', done: true},
+  {id: id++, text: 'Learn JavaScript', done: true},
+  {id: id++, text: 'Learn Vue', done: false}
 ])
 
+const filteredTodos = computed<Todo[]>(() => {
+  if (hideCompleted.value) {
+    return todos.value;
+  } else {
+    return todos.value.filter(item => !item.done);
+  }
+})
+
 function addTodo() {
-  // ...
-  todos.value.push({id: id++, text: newTodo.value});
+  todos.value.push({id: id++, text: newTodo.value, done: false});
 }
 
 function removeTodo(todo: Todo) {
@@ -31,11 +41,15 @@ function removeTodo(todo: Todo) {
     <button>Add Todo</button>
   </form>
   <ul>
-    <li v-for="todo in todos" :key="todo.id">
+    <li v-for="todo in filteredTodos" :key="todo.id">
+      <input v-model="todo.done" type="checkbox">
       {{ todo.text }}
       <button @click="removeTodo(todo)">X</button>
     </li>
   </ul>
+  <button @click="hideCompleted = !hideCompleted">
+    {{ hideCompleted ? 'Show all' : 'Hide completed' }}
+  </button>
 </template>
 
 <style scoped>
