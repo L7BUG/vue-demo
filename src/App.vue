@@ -1,7 +1,10 @@
 <script lang="ts" setup>
 import ChildComp from "./components/ChildComp.vue";
+import {ref} from "vue";
+
+const msg = ref<string>("");
 </script>
 
 <template>
-  <ChildComp/>
+  <ChildComp :msg="msg"/>
 </template>

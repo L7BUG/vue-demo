@@ -1,9 +1,11 @@
 <script lang="ts" setup>
-
+const props = defineProps({
+  msg: String,
+});
 </script>
 
 <template>
-  <h1>ChildComp</h1>
+  <h1>{{ msg || "no msg" }}</h1>
 </template>
 
 <style scoped>
