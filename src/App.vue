@@ -6,5 +6,5 @@ const msg = ref<string>("");
 </script>
 
 <template>
-  <ChildComp :msg="msg"/>
+  <ChildComp :msg="msg" @response="item => msg = item"/>
 </template>

@@ -1,7 +1,9 @@
 <script lang="ts" setup>
-const props = defineProps({
+defineProps({
   msg: String,
 });
+const emit = defineEmits(['response'])
+emit("response", "hello from child")
 </script>
 
 <template>
