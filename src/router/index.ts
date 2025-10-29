@@ -1,20 +1,30 @@
-import {createMemoryHistory, createRouter, type RouteRecordRaw} from 'vue-router'
+import {createRouter, createWebHashHistory, type RouteRecordRaw} from 'vue-router'
 import {demo} from "@/router/modules/demo.ts";
+import {common} from "@/router/modules/common.ts";
 
 const routes: RouteRecordRaw[] = [
-    {path: '/hello', component: () => import("@/components/Hello.vue")},
+	{path: '/hello', component: () => import("@/components/Hello.vue")},
+	{path: "/login", component: () => import("@/views/Login.vue")},
+	{path: "/", redirect: "/login"}
 ];
-demo.forEach(item => {
-    // 确保 item 有必要的属性
-    if (item.path && item.component) {
-        routes.push({
-            path: item.path,
-            component: item.component,
-        });
-    }
-});
+const temp = (item: RouteRecordRaw) => {
+	if (item.path && item.component) {
+		routes.push({
+			path: item.path,
+			component: item.component,
+		});
+	}
+}
+demo.forEach(temp);
+common.forEach(temp)
 const router = createRouter({
-    history: createMemoryHistory(),
-    routes,
+	history: createWebHashHistory(),
+	routes,
 })
+router.beforeEach((to, from, next) => {
+	console.log("to=>", to);
+	console.log("from=>", from);
+	console.log("next=>", next);
+	return next();
+});
 export default router
