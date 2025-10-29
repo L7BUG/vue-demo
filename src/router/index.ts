@@ -1,5 +1,5 @@
 import {createMemoryHistory, createRouter, type RouteRecordRaw} from 'vue-router'
-import demo from "@/router/modules/demo.ts";
+import {demo} from "@/router/modules/demo.ts";
 
 const routes: RouteRecordRaw[] = [
     {path: '/hello', component: () => import("@/components/Hello.vue")},
