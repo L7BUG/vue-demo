@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import {computed} from "vue";
-import {useRoute} from "vue-router";
+import { computed } from "vue";
+import { useRoute } from "vue-router";
 import UserInfo from "@/components/demo/user/UserInfo.vue";
 
 interface UserInfo {
@@ -11,12 +11,12 @@ interface UserInfo {
 
 const route = useRoute();
 const userInfo = computed<UserInfo>((): UserInfo => {
-	const {id, username} = route.params;
-	const {password} = route.query;
+	const { id, username } = route.params;
+	const { password } = route.query;
 	return {
 		id: Math.max(0, Number(id ? id : 0)),
 		username: username ? username.toString() : "",
-		password: password ? password.toString() : ""
+		password: password ? password.toString() : "",
 	};
 });
 </script>
