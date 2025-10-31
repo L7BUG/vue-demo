@@ -1,19 +1,19 @@
 <script lang="ts" setup>
 import router from "@/router";
-import {ref} from "vue";
-import {demoPathList} from "@/router/modules/demo.ts";
+import { ref } from "vue";
+import { demoPathList } from "@/router/modules/demo.ts";
 
-const path = ref('/');
+const path = ref("/");
 const home = () => {
 	router.push("/");
-}
+};
 
 const push = () => {
 	router.push(path.value);
-}
+};
 
-const options: string[] = ["/"]
-demoPathList.forEach(item => options.push(item))
+const options: string[] = ["/", "/file-info"];
+demoPathList.forEach((item) => options.push(item));
 </script>
 
 <template>
@@ -30,6 +30,4 @@ demoPathList.forEach(item => options.push(item))
 	<el-button @click="push">跳转到[{{ path }}]</el-button>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
