@@ -18,16 +18,16 @@ demoPathList.forEach((item) => options.push(item));
 
 <template>
 	<h1>Hello App!!!!!=>{{ $route.fullPath }}</h1>
-	<el-button @click="home">返回主页</el-button>
-	<el-select v-model="path" placeholder="Select" style="width: 240px">
-		<el-option
+	<button @click="home">返回主页</button>
+	<select v-model="path" style="width: 240px">
+		<option
 			v-for="item in options"
 			:key="item"
 			:label="item"
 			:value="item"
 		/>
-	</el-select>
-	<el-button @click="push">跳转到[{{ path }}]</el-button>
+	</select>
+	<button @click="push">跳转到[{{ path }}]</button>
 </template>
 
 <style scoped></style>

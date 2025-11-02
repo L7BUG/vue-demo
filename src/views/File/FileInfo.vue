@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue";
 import FileApi, { type FileInfoResponse } from "@/api/file-service/file.ts";
-import { ElMessage } from "element-plus";
 
 const fileApi = new FileApi();
 const id = ref<string>("");
@@ -9,7 +8,6 @@ const fileInfo = ref<FileInfoResponse | null>(null);
 
 function getFileInfo() {
 	if (!id.value) {
-		ElMessage.error("id为空");
 		return;
 	}
 	fileApi.getFileInfo(id.value).then((res) => {
@@ -25,15 +23,10 @@ const path = computed<string>(
 </script>
 
 <template>
-	<el-input
-		v-model="id"
-		clearable
-		placeholder="Please input"
-		style="width: 240px"
-	/>
-	<el-button @click="getFileInfo">获取信息</el-button>
+	<input v-model="id" placeholder="Please input" style="width: 240px" />
+	<button @click="getFileInfo">获取信息</button>
 	<div v-if="fileInfo" style="margin: 20px">
-		<el-text type="success">{{ fileInfo }}</el-text>
+		{{ fileInfo }}
 	</div>
 	<a :href="path">{{ path }}</a>
 </template>

@@ -7,7 +7,7 @@ const next = () => {
 </script>
 
 <template>
-	<el-button @click="next()">登录</el-button>
+	<button @click="next()">登录</button>
 </template>
 
 <style scoped></style>
