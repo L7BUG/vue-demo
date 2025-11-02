@@ -8,7 +8,7 @@ import { common } from "@/router/modules/common.ts";
 
 const routes: RouteRecordRaw[] = [
 	{ path: "/hello", component: () => import("@/components/Hello.vue") },
-	{ path: "/login", component: () => import("@/views/Login.vue") },
+	{ path: "/login", component: () => import("@/pages/login/index.vue") },
 	{
 		path: "/file-info",
 		component: () => import("@/views/File/FileInfo.vue"),
