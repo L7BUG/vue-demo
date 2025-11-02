@@ -29,6 +29,7 @@
 		"prettier": "^3.6.2",
 		"typescript": "~5.9.3",
 		"vite": "^7.1.7",
+		"vite-plugin-vue-svg": "^0.1.0",
 		"vue-tsc": "^3.1.0"
 	}
 }
